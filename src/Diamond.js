@@ -1,18 +1,13 @@
 import React, { useRef } from "react";
 import { useGLTF, MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from "three";
-import { Leva, useControls } from 'leva'
+import { Leva, useControls } from "leva";
 
 export default function Diamond() {
+  //web workers for the diamond model to load faster and not block the main thread
 
-  //web workers for the diamond model to load faster and not block the main thread  
-
-
-
-  
   const statueRef = useRef();
   const config = useControls({
-   
     meshPhysicalMaterial: false,
     transmissionSampler: false,
     backside: true,
@@ -28,34 +23,39 @@ export default function Diamond() {
     distortionScale: { value: 1.0, min: 0.01, max: 1, step: 0.01 },
     temporalDistortion: { value: 0.04, min: 0, max: 1, step: 0.01 },
     attenuationDistance: { value: 2.19, min: 0, max: 10, step: 0.01 },
-    
+
     // iridescence: { value: 1.0, min: 0.01, max: 1, step: 0.01 },
     // clearcoat: { value: 1.0, min: 0.01, max: 1, step: 0.01 },
-    attenuationColor: '#ffffff',
-    color: '#e7deff',
-    bg: '#ffffff',
+    attenuationColor: "#ffffff",
+    color: "#e7deff",
+    bg: "#ffffff",
     envMapIntensity: { value: 0.02, min: 0, max: 10, step: 0.01 },
-    
-  })
+  });
 
-  //load the diamond model   
+  //load the diamond model
 
- 
-
-  const { nodes, materials } = useGLTF('/diamond.glb')
+  const { nodes, materials } = useGLTF("/diamond.glb");
   return (
-    
     <group dispose={null}>
-      
-      <mesh geometry={nodes.diamond1.geometry} castShadow
-        receiveShadow position={[-0.25, 1.1, 0]} scale={0.3} rotation={[Math.PI / 10, 0, 0]}>
-        {config.meshPhysicalMaterial ? <meshPhysicalMaterial {...config} /> : <MeshTransmissionMaterial background={new THREE.Color(config.bg)} {...config} />}
+      <mesh
+        geometry={nodes.diamond1.geometry}
+        castShadow
+        receiveShadow
+        position={[-0.25, 1.1, 0]}
+        scale={0.3}
+        rotation={[Math.PI / 10, 0, 0]}
+      >
+        {config.meshPhysicalMaterial ? (
+          <meshPhysicalMaterial {...config} />
+        ) : (
+          <MeshTransmissionMaterial
+            background={new THREE.Color(config.bg)}
+            {...config}
+          />
+        )}
       </mesh>
 
-   
       <mesh
-      
-        
         geometry={nodes.diamond1.geometry}
         side={THREE.FrontSide}
         material={materials.Diamond}
@@ -63,12 +63,8 @@ export default function Diamond() {
         rotation={[Math.PI / 10, 0, 0]}
         ref={statueRef}
         scale={0.2}
-        
-      >
-        
-      </mesh>
+      ></mesh>
     </group>
-    
   );
 }
 

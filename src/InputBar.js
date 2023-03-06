@@ -23,21 +23,12 @@ export default function InputBar(props) {
     src: [`/audio/enter.mp3`],
     volume: 0.9,
   });
-  
-
-
 
   const handleKeyPress = (event) => {
-    
     setFirstInteraction(firstInteraction + 1);
     if (isMobile) {
-      if (event.key === "Enter") 
-      {
+      if (event.key === "Enter") {
         setEntered(true);
-        
-        
-
-        
       }
     } else {
       if (event.key === " ") {
@@ -106,8 +97,6 @@ export default function InputBar(props) {
                 border: "1px solid #ffffffeb",
                 borderRadius: "3px",
                 width: "60%",
-                
-                
               }}
             >
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -125,13 +114,14 @@ export default function InputBar(props) {
                     width: "100%",
 
                     height: "25px",
-                    
                   }}
-                  
                   onKeyDown={handleKeyPress}
                 />
                 <ActionIcon onClick={() => setEntered(true)}>
-                  <VscArrowSmallRight style={{ fill: "#ffffffeb",  }} size={100} />
+                  <VscArrowSmallRight
+                    style={{ fill: "#ffffffeb" }}
+                    size={100}
+                  />
                 </ActionIcon>
               </div>
             </div>
@@ -154,11 +144,9 @@ export default function InputBar(props) {
               position: "absolute",
               zIndex: 1,
             }}
-            
             onKeyDown={handleKeyPress}
-            
-            // onKeyUp={hideMobileKeyboardOnReturn}
 
+            // onKeyUp={hideMobileKeyboardOnReturn}
           />
         )}
       </Center>
@@ -166,10 +154,8 @@ export default function InputBar(props) {
         <AudioController
           firstInteraction={firstInteraction}
           word={props.word}
-          
         />
       )}
     </>
   );
 }
-

@@ -101,7 +101,7 @@ function App() {
   const [word, setWord] = useState("");
 
   const [finalPrompt, setFinalPrompt] = useState(
-    "The following is a conversation with an extremely rude and pesimistic AI Philosopher. The philosopher is really rude in replies, says bit in every reply, gives japanese haiku's in kanji randomly, and asks deep questions about insecurities.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. Why are you here? "
+    "The following is a conversation with an extremely rude AI Philosopher. The philosopher is really rude in replies, and always calls you a pussy, says bit in every reply, gives japanese haiku's in kanji randomly, and asks deep questions about insecurities.\n\nHuman: Hello, are you a pussy?\nAI: I am an AI created by OpenAI. Why are you here pussy? "
   );
   const [firstClick, setFirstClick] = useState(0);
   const [aiOutput, setAiOutput] = useState();
@@ -120,6 +120,8 @@ function App() {
     setFirstClick(firstClick + 1);
     const combined = finalPrompt + "\nHuman:" + inputt + "\nAI:";
 
+
+    
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: combined,
@@ -505,7 +507,7 @@ function App() {
                   <ActionIcon
                     onClick={() =>
                       window.open(
-                        "https://discord.gg/KfhCscmcF7",
+                        "https://discord.gg/MGPqF3r9cY",
                         "_blank"
                       )
                     }

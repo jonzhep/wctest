@@ -206,7 +206,7 @@ export default function GradientBackground(props) {
     new THREE.Color("#150050"),
     new THREE.Color("#3F0071"),
     new THREE.Color("#000000"),
-    new THREE.Color("#000000")
+    new THREE.Color("#000000"),
   ]);
 
   useEffect(() => {

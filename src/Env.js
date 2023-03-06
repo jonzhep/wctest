@@ -22,24 +22,15 @@ export default function Env(props) {
       state.camera.lookAt(0, 0, 0);
     }
     if (enterIncrement === 5) {
-      state.camera.position.lerp(
-        vec.set(4, 0, 3),
-        0.01
-      );
+      state.camera.position.lerp(vec.set(4, 0, 3), 0.01);
       state.camera.lookAt(0, 0, 0);
     }
     if (enterIncrement === 6) {
-      state.camera.position.lerp(
-        vec.set(0, 4, 8),
-        0.01
-      );
+      state.camera.position.lerp(vec.set(0, 4, 8), 0.01);
       state.camera.lookAt(0, 0, 0);
     }
     if (enterIncrement === 7) {
-      state.camera.position.lerp(
-        vec.set(0, 1, 6),
-        0.01
-      );
+      state.camera.position.lerp(vec.set(0, 1, 6), 0.01);
       state.camera.lookAt(0, 0, 0);
     }
     if (enterIncrement === 8) {
@@ -64,21 +55,14 @@ export default function Env(props) {
       state.camera.lookAt(0, 0, 0);
     }
     if (enterIncrement === 11) {
-      state.camera.position.lerp(
-        vec.set(-3, 0, 3),
-        0.01
-      );
+      state.camera.position.lerp(vec.set(-3, 0, 3), 0.01);
       state.camera.lookAt(0, 0, 0);
     }
     if (enterIncrement === 12) {
-      state.camera.position.lerp(
-        vec.set(0, 0, 500),
-        0.001
-      );
+      state.camera.position.lerp(vec.set(0, 0, 500), 0.001);
       state.camera.lookAt(0, 0, 0);
     }
   });
 
   return <Environment preset={"night"} background blur={1} opacity={0.9} />;
 }
-
