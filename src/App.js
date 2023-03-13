@@ -44,6 +44,8 @@ import { arbitrum, mainnet, polygon } from "wagmi/chains";
 
 import { Web3Button } from "@web3modal/react";
 
+
+
 const chains = [arbitrum, mainnet, polygon];
 
 // Wagmi client
@@ -102,19 +104,17 @@ function App() {
   const [modalFont, setModalFont] = useState(20);
   const [typeIts, setTypeIts] = useState([]);
 
+
+
+
   const generateResponse2 = async (inputt) => {
     setFirstClick(firstClick + 1);
     const combined = finalPrompt + "\nHuman:" + inputt + "\nAI:";
 
     const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: combined,
-      temperature: 0.9,
-      max_tokens: 300,
-      top_p: 1,
-      frequency_penalty: 0.76,
-      presence_penalty: 0.75,
-      stop: [" Human:", " AI:"],
+      messages: [
+        { role: "system", content: "You are a helpful assistant that helps developers with coding and programming tasks." },
+        { role: "user", content: {prompt} }],
     });
     const response2 = await openai.createCompletion({
       model: "text-davinci-003",
@@ -129,6 +129,12 @@ function App() {
       presence_penalty: 0.0,
       stop: [";"],
     });
+
+
+
+
+
+
 
     setAiOutput(response.data.choices[0].text);
     api4.start({
