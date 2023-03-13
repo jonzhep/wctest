@@ -10,14 +10,14 @@ export default function AudioController(props) {
       setCasettePlaying(true);
       setArpCPlaying(true);
       gsap.to(padCVolume, {
-        delay: 6,
-        volume: 0.5,
+        delay: 2,
+        volume: 0.9,
         duration: 4,
         onUpdate: () => setPadCVolume({ volume: padCVolume.volume }),
       });
       gsap.to(casetteVolume, {
         delay: 4,
-        volume: 0.3,
+        volume: 0.7,
         duration: 3,
         onUpdate: () => setCasetteVolume({ volume: casetteVolume.volume }),
       });
@@ -27,12 +27,12 @@ export default function AudioController(props) {
   useEffect(() => {
     if (props.word === "optimistic") {
       gsap.to(padCVolume, {
-        volume: 0.5,
+        volume: 0.9,
         duration: 3,
         onUpdate: () => setPadCVolume({ volume: padCVolume.volume }),
       });
       gsap.to(padFVolume, {
-        volume: 0,
+        volume: 0.5,
         duration: 5,
         onUpdate: () => setPadFVolume({ volume: padFVolume.volume }),
       });
@@ -45,7 +45,7 @@ export default function AudioController(props) {
 
     if (props.word === "pessimistic") {
       gsap.to(padCVolume, {
-        volume: 0,
+        volume: 0.5,
         duration: 5,
         onUpdate: () => setPadCVolume({ volume: padCVolume.volume }),
       });
@@ -55,7 +55,7 @@ export default function AudioController(props) {
         onUpdate: () => setPadFVolume({ volume: padFVolume.volume }),
       });
       gsap.to(arpCVolume, {
-        volume: 0,
+        volume: 0.5,
         duration: 5,
         onUpdate: () => setArpCVolume({ volume: arpCVolume.volume }),
       });
