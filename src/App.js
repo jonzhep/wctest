@@ -27,14 +27,16 @@ import Env from "./Env";
 import Scene from "./Scene";
 import Postproduction from "./Postproduction.js";
 import TypeIt from "typeit-react";
-import { Perf } from "r3f-perf";
-import { Leva } from "leva";
+import { Perf } from 'r3f-perf'
+import { Leva } from 'leva'
 
 import {
   EthereumClient,
   modalConnectors,
   walletConnectProvider,
 } from "@web3modal/ethereum";
+
+
 
 import { Web3Modal } from "@web3modal/react";
 
@@ -43,6 +45,10 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { arbitrum, mainnet, polygon } from "wagmi/chains";
 
 import { Web3Button } from "@web3modal/react";
+
+
+
+
 
 
 
@@ -66,7 +72,11 @@ const wagmiClient = createClient({
 // Web3Modal Ethereum Client
 const ethereumClient = new EthereumClient(wagmiClient, chains);
 
+
+
+
 function App() {
+
   // const worker = new Worker(new URL('./worker.js', import.meta.url));
   // worker.postMessage({ type: 'load', url: 'src/diamond.js' });
   // worker.onmessage = (e) => {
@@ -74,6 +84,7 @@ function App() {
   //     console.log('loaded');
   //   }
   // };
+
 
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -86,10 +97,11 @@ function App() {
   const [colorFour, setColorFour] = useState("#000000");
   const [colorFive, setColorFive] = useState("#000000");
 
+ 
   const [word, setWord] = useState("");
 
   const [finalPrompt, setFinalPrompt] = useState(
-    "The following is a conversation with an extremely rude AI Philosopher. The philosopher is really rude in replies, and always calls you a pussy, says bit in every reply, gives japanese haiku's in kanji randomly, and asks deep questions about insecurities.\n\nHuman: Hello, are you a pussy?\nAI: I am an AI created by OpenAI. Why are you here pussy? "
+    "The following is a conversation with an extremely rude and pesimistic AI Philosopher. The philosopher is really rude in replies, says bit in every reply, gives japanese haiku's in kanji randomly, and asks deep questions about insecurities.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. Why are you here? "
   );
   const [firstClick, setFirstClick] = useState(0);
   const [aiOutput, setAiOutput] = useState();
@@ -104,17 +116,19 @@ function App() {
   const [modalFont, setModalFont] = useState(20);
   const [typeIts, setTypeIts] = useState([]);
 
-
-
-
   const generateResponse2 = async (inputt) => {
     setFirstClick(firstClick + 1);
     const combined = finalPrompt + "\nHuman:" + inputt + "\nAI:";
 
     const response = await openai.createCompletion({
-      messages: [
-        { role: "system", content: "You are a helpful assistant that helps developers with coding and programming tasks." },
-        { role: "user", content: {prompt} }],
+      model: "text-davinci-003",
+      prompt: combined,
+      temperature: 0.9,
+      max_tokens: 300,
+      top_p: 1,
+      frequency_penalty: 0.76,
+      presence_penalty: 0.75,
+      stop: [" Human:", " AI:"],
     });
     const response2 = await openai.createCompletion({
       model: "text-davinci-003",
@@ -129,12 +143,6 @@ function App() {
       presence_penalty: 0.0,
       stop: [";"],
     });
-
-
-
-
-
-
 
     setAiOutput(response.data.choices[0].text);
     api4.start({
@@ -367,6 +375,7 @@ function App() {
           bottom: 0,
           right: 0,
           padding: "1.5rem",
+          
         }}
       >
         <Group>
@@ -389,6 +398,7 @@ function App() {
           padding: "1rem",
           width: "100%",
           textAlign: "center",
+          
         }}
       >
         <Web3Button position="center" index="100" />
@@ -446,12 +456,16 @@ function App() {
 
       {/* About  */}
 
-      <WagmiConfig client={wagmiClient}></WagmiConfig>
+
+      <WagmiConfig client={wagmiClient}>
+        
+      </WagmiConfig>
 
       <Web3Modal
         projectId="adc7318acda7c5926f7c5fe38010f1e1"
         ethereumClient={ethereumClient}
       />
+
 
       <Modal
         size={modalSize}
@@ -480,6 +494,7 @@ function App() {
               </div>
               <CenterMantine mt={10} mb={20}>
                 <Group spacing={30}>
+                  
                   <ActionIcon
                     onClick={() =>
                       window.open("https://twitter.com/EmpireofCHARM", "_blank")
@@ -489,7 +504,10 @@ function App() {
                   </ActionIcon>
                   <ActionIcon
                     onClick={() =>
-                      window.open("https://discord.gg/MGPqF3r9cY", "_blank")
+                      window.open(
+                        "https://discord.gg/KfhCscmcF7",
+                        "_blank"
+                      )
                     }
                   >
                     <FaDiscord size={30} style={{ fill: "#ffffff" }} />
@@ -497,6 +515,7 @@ function App() {
                 </Group>
               </CenterMantine>
             </div>
+           
           </Stack>
         </CenterMantine>
       </Modal>
@@ -534,11 +553,15 @@ function App() {
       {/* React Three Fiber Canvas */}
       <Leva hidden />
 
+      
+
       <Canvas
+      
         shadows
         camera={{ position: [0, 0, 6.5], fov: 50 }}
         gl={{ antialias: false }}
       >
+        
         <group position={[0.2, -1.5, 0]}>
           <Scene
             firstClick={firstClick}
@@ -548,6 +571,7 @@ function App() {
             colorFour={colorFour}
             colorFive={colorFive}
           />
+          
         </group>
         <Env enterIncrement={enterIncrement} />
         {!isMobile && <Postproduction />}
