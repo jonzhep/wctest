@@ -27,7 +27,7 @@ export default function AudioController(props) {
   useEffect(() => {
     if (props.word === "optimistic") {
       gsap.to(padCVolume, {
-        volume: 0.9,
+        volume: 1.0,
         duration: 3,
         onUpdate: () => setPadCVolume({ volume: padCVolume.volume }),
       });
