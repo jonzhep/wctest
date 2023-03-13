@@ -17,7 +17,7 @@ export default function AudioController(props) {
       });
       gsap.to(casetteVolume, {
         delay: 4,
-        volume: 0.7,
+        volume: 0.0,
         duration: 3,
         onUpdate: () => setCasetteVolume({ volume: casetteVolume.volume }),
       });
